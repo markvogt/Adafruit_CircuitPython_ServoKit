@@ -10,6 +10,6 @@ kit = ServoKit(channels=16)
 # ARM the motor on channel 1...
 kit.continuous_servo[1].throttle = 1
 time.sleep(3)
-kit.continuous_servo[1].throttle = -1
-time.sleep(1)
 kit.continuous_servo[1].throttle = 0
+time.sleep(3)
+#kit.continuous_servo[1].throttle = 0.1
