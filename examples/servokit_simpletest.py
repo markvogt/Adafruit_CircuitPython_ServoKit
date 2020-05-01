@@ -8,13 +8,15 @@ kit = ServoKit(channels=16)
 
 # ARM the motor on channel 1...
 kit.continuous_servo[1].throttle = 1
+time.sleep(1)
 kit.continuous_servo[1].throttle = -1
+time.sleep(1)
 kit.continuous_servo[1].throttle = 0
 
 # ACTIVATE servo on channel 0 to its 180 deg setting...
 kit.servo[0].angle = 180
 # ACTIVATE motor on channel 1 to 100% ?...
-kit.continuous_servo[1].throttle = 1
+kit.continuous_servo[1].throttle = .1
 # PAUSE 1 second...
 time.sleep(1)
 
@@ -22,8 +24,4 @@ time.sleep(1)
 kit.servo[0].angle = 0
 # ACTIVATE motor on channel 1 to 0%...
 kit.continuous_servo[1].throttle = 0
-# PAUSE 1 second...
-time.sleep(1)
-
-
-
+kit.continuous_servo[1].throttle = 0
