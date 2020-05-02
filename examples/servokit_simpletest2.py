@@ -37,9 +37,9 @@ while True:
 
     for i in range(10, 0,-1):
         # SEND a FULL THROTTLE command...
-        kit.continuous_servo[1].throttle = i
+        kit.continuous_servo[1].throttle = i/10
         # CONTINUE at this speed by using SLEEP for 5 secs...
-        time.sleep(1 )
+        time.sleep(1)
 
 
 
