@@ -10,13 +10,38 @@ from adafruit_servokit import ServoKit
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
 kit = ServoKit(channels=16)
 
-# INITIALIZE ("ARM") the ESC driving the brushless motor on channel 1...
-#kit.continuous_servo[1].throttle = 1
-kit.continuous_servo[1].throttle = -1
-#time.sleep(1)
-#kit.continuous_servo[1].throttle = -1
-#time.sleep(1)
-#kit.continuous_servo[1].throttle = 0
+# while True:
+#     # SEND a FULL THROTTLE command...
+#     kit.continuous_servo[1].throttle = 1
+#     # CONTINUE at this speed by using SLEEP for 5 secs...
+#     time.sleep(5)
+
+#     # SEND a HALF THROTTLE command (NOT actually "zero")...
+#     kit.continuous_servo[1].throttle = .5
+#     time.sleep(5)
+
+#     # SEND a SLOWEST THROTTLE command (NOT actually "zero")...
+#     kit.continuous_servo[1].throttle = 0
+#     time.sleep(5)
+
+#     # SEND STOP MOTOR command...
+#     kit.continuous_servo[1].throttle = -1
+#     time.sleep(5)
+
+while True: 
+    for i in range(0, 10,1):
+        # SEND a FULL THROTTLE command...
+        kit.continuous_servo[1].throttle = i/10
+        # CONTINUE at this speed by using SLEEP for 5 secs...
+        time.sleep(1)
+
+    for i in range(10, 0,-1):
+        # SEND a FULL THROTTLE command...
+        kit.continuous_servo[1].throttle = i
+        # CONTINUE at this speed by using SLEEP for 5 secs...
+        time.sleep(1 )
+
+
 
 # ACTIVATE servo on channel 0 to its 180 deg setting...
 # kit.servo[0].angle = 180
