@@ -10,37 +10,40 @@ from adafruit_servokit import ServoKit
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
 kit = ServoKit(channels=16)
 
-# while True:
-#     # SEND a FULL THROTTLE command...
-#     kit.continuous_servo[1].throttle = 1
-#     # CONTINUE at this speed by using SLEEP for 5 secs...
-#     time.sleep(5)
+# INITIALIZE the ESC...
+print("INITIALIZING motor...")
+kit.continuous_servo[1].throttle = 1
+time.sleep(2)
+kit.continuous_servo[1].throttle = -1
+time.sleep(2)
+#kit.continuous_servo[1].throttle = 0
+#time.sleep(2)
+#kit.continuous_servo[1].throttle = -1
+#time.sleep(2)
 
-#     # SEND a HALF THROTTLE command (NOT actually "zero")...
-#     kit.continuous_servo[1].throttle = .5
-#     time.sleep(5)
-
-#     # SEND a SLOWEST THROTTLE command (NOT actually "zero")...
-#     kit.continuous_servo[1].throttle = 0
-#     time.sleep(5)
-
-#     # SEND STOP MOTOR command...
-#     kit.continuous_servo[1].throttle = -1
-#     time.sleep(5)
-
-while True: 
-    for i in range(0, 10,1):
-        # SEND a FULL THROTTLE command...
-        kit.continuous_servo[1].throttle = i/10
+print("STEPPING motor up & down a few times... ")
+for i in  range(0,2,1):
+    print("i = " + str(i))
+    #while True: 
+    for j in range(0, 10,1):
+        # SEND a THROTTLE command...
+        print("  j = " + str(j))
+        kit.continuous_servo[1].throttle = j/10
         # CONTINUE at this speed by using SLEEP for 5 secs...
         time.sleep(1)
 
-    for i in range(10, 0,-1):
-        # SEND a FULL THROTTLE command...
-        kit.continuous_servo[1].throttle = i/10
+    for j in range(10, 0,-1):
+        # SEND a THROTTLE command...
+        print("  j = " + str(j))
+        kit.continuous_servo[1].throttle = j/10
         # CONTINUE at this speed by using SLEEP for 5 secs...
-        time.sleep(1 )
+        time.sleep(1)
 
+    i = i + 1
+    print("")
+
+print("STOPPING motor...")
+kit.continuous_servo[1].throttle = -1
 
 
 # ACTIVATE servo on channel 0 to its 180 deg setting...
