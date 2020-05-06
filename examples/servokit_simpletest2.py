@@ -1,6 +1,7 @@
 # SIMPLETEST2
 # MARK VOGT 2020 05 01 
 # Simple test for a standard servo on channel 0 and an ESC-controlled brushless motor on channel 1 using Adafruit ServoKit python module...
+# It also loops both a motor or "continously-rotating servo" AND a position-holding servo over a range of motion a few times...
 
 # IMPORT python modules required by code...
 import time
@@ -16,19 +17,17 @@ kit.continuous_servo[1].throttle = 1
 time.sleep(2)
 kit.continuous_servo[1].throttle = -1
 time.sleep(2)
-#kit.continuous_servo[1].throttle = 0
-#time.sleep(2)
-#kit.continuous_servo[1].throttle = -1
-#time.sleep(2)
 
-print("STEPPING motor up & down a few times... ")
+print("STEPPING MOTOR SPEED and a SERVO ANGLE up & down a few times...   ")
 for i in  range(0,2,1):
     print("i = " + str(i))
     #while True: 
     for j in range(0, 10,1):
-        # SEND a THROTTLE command...
+        # SEND an incremental THROTTLE CHANGE command...
         print("  j = " + str(j))
         kit.continuous_servo[1].throttle = j/10
+        # SEND an incremental SERVO CHANGE command...
+        kit.servo[0].angle = j*9
         # CONTINUE at this speed by using SLEEP for 5 secs...
         time.sleep(1)
 
@@ -36,6 +35,8 @@ for i in  range(0,2,1):
         # SEND a THROTTLE command...
         print("  j = " + str(j))
         kit.continuous_servo[1].throttle = j/10
+        # SEND an incremental SERVO CHANGE command...
+        kit.servo[0].angle = j*9
         # CONTINUE at this speed by using SLEEP for 5 secs...
         time.sleep(1)
 
@@ -44,16 +45,3 @@ for i in  range(0,2,1):
 
 print("STOPPING motor...")
 kit.continuous_servo[1].throttle = -1
-
-
-# ACTIVATE servo on channel 0 to its 180 deg setting...
-# kit.servo[0].angle = 180
-# ACTIVATE motor on channel 1 to 100% ?...
-# kit.continuous_servo[1].throttle = .1
-# PAUSE 1 second...
-# time.sleep(1)
-
-# ACTIVATE servo on channel 0 to it 0 deg setting...
-#kit.servo[0].angle = 0
-# ACTIVATE motor on channel 1 to 0%...
-# kit.continuous_servo[1].throttle = 0
